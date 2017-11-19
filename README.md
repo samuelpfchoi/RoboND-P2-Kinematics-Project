@@ -10,7 +10,7 @@
 5. Perform Kinematic Analysis for the robot following the [project rubric](https://review.udacity.com/#!/rubrics/972/view).
 6. Fill in the `IK_server.py` with your Inverse Kinematics code.
 
-![png](./misc_image/misc2.png)
+![png](./misc_images/misc2.png)
 
 ## Writeup
 
