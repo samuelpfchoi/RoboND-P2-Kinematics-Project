@@ -18,9 +18,19 @@
 
 #### DH Parameters
 
-Run the forward_kinematics demo and evaluate the kr210.urdf.xacro file to perform kinematic analysis of Kuka KR210 robot and derive its DH parameters as following:
+Based on following description to find out the corresponding DH parameter for Kuka KR210 robot arm:
+* a(i) (link length) = the distance from Z(i) to Z(i+1) measured along X(i);
+* alpha(i) (link twist) = the angle from Z(i) to Z(i+1) measured about X(i);
+* d(i) (link offset) = the distance from X(i-1) to X(i) measured along Z(i); and
+* theta(i) (joint angle) = the angle from X(i-1) to X(i) measured about Z(i).
 
 ![png](./writeup_images/fk.png)
+
+and then run the forward_kinematics demo to figure out all corresponding parameters for the DH parameters
+
+![png](./writeup_images/kuka_arm_deom.png)
+
+Here is the result of the DH parameters table:
 
 i | alpha(i-1) | a(i-1) | d(i) | theta(i)
 --- | --- | --- | --- | ---
@@ -31,12 +41,6 @@ i | alpha(i-1) | a(i-1) | d(i) | theta(i)
 5 | pi/2 | 0 | 0 | q5
 6 | -pi/2 | 0 | 0 | q6
 EE | 0 | 0 | 0.030 | 0
-
-where:
-* a(i) (link length) = the distance from Z(i) to Z(i+1) measured along X(i);
-* alpha(i) (link twist) = the angle from Z(i) to Z(i+1) measured about X(i);
-* d(i) (link offset) = the distance from X(i-1) to X(i) measured along Z(i); and
-* theta(i) (joint angle) = the angle from X(i-1) to X(i) measured about Z(i).
 
 
 #### Forward Kinematic
