@@ -16,7 +16,9 @@
 
 ### Kinematic Analysis
 
-#### 1. Run the forward_kinematics demo and evaluate the kr210.urdf.xacro file to perform kinematic analysis of Kuka KR210 robot and derive its DH parameters as following:
+#### DH Parameters
+
+Run the forward_kinematics demo and evaluate the kr210.urdf.xacro file to perform kinematic analysis of Kuka KR210 robot and derive its DH parameters as following:
 
 ![png](./writeup_images/fk.png)
 
@@ -37,7 +39,9 @@ where:
 * theta(i) (joint angle) = the angle from X(i-1) to X(i) measured about Z(i).
 
 
-#### 2. Using the DH parameter table you derived earlier, create individual transformation matrices about each joint. In addition, also generate a generalized homogeneous transform between base_link and gripper_link using only end-effector(gripper) pose.
+#### Forward Kinematic
+
+Using the DH parameter table you derived earlier, create individual transformation matrices about each joint. In addition, also generate a generalized homogeneous transform between base_link and gripper_link using only end-effector(gripper) pose.
 
 The generalized Homogeneous Transformation matrix is defined as below:
 ```
@@ -114,7 +118,7 @@ The forward kinematic model, i.e. homogeneous transformation matrix of end-gripp
         T0_EE = T0_1 * T1_2 * T2_3 * T3_4 * T4_5 * T5_6 * T6_EE
 ```
 
-#### 3. Decouple Inverse Kinematics problem into Inverse Position Kinematics and inverse Orientation Kinematics; doing so derive the equations to calculate all individual joint angles.
+#### Inverse Kinematics
 
 The last three joints in Kuka KR210 are revolute joints, such a design is called a **spherical wrist** and the common point of intersection is call the **wrist center**. The advantage of such a design is that it kinematically decouples the position and orientation of the end effector. It is possible to independently solve two simpler problems: first, the Cartesian coordinates of the wrist center, and then the composition of rotations to orient the end effector.
 
@@ -211,5 +215,20 @@ The resultant matrix on the RHS (Right Hand Side of the equation) does not have 
 
 ### Project Implementation
 
-#### 1. Fill in the `IK_server.py` file with properly commented python code for calculating Inverse Kinematics based on previously performed Kinematic Analysis. The robot can successfully complete 8/10 pick and place cycles.
+The whole implementation located in [IK_server.py](https://github.com/samuelpfchoi/RoboND-P2-Kinematics-Project/blob/master/kuka_arm/scripts/IK_server.py)
+
+It is based on previously performed Kinematic Analysis with python code to achieve IK computation. The process includes:
+* Based on derived DH parameter, using python symbolic to compute homogeneous transformation matrices about each joint and forward kinematics model.
+* Extracting end-effector position and orientation from request and then using geometric IK method to calculate joint angles.
+
+As shown in the image below, the robot can successfully complete 9/10 pick and place cycles.
+
+![png](./writeup_images/result_01.png)
+
+### Improvement
+
+Following is number of suggestion that may improve the implementation:
+* Instead of symbolic calculation, we may code the equation of the FK directly with python code, it should be greatly improve the speed of computation.
+* My personal opinion, using numerical IK with geometry jacobian method, which is better to generalize the implementation.
+* Current implementation still has a lot of room to improve, such singularity issue and wrist flipping issue.
 
