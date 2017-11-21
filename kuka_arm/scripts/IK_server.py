@@ -122,10 +122,15 @@ def handle_calculate_IK(req):
             theta1 = (atan2(WC[1], WC[0])).evalf()
 
             # SSS triangle for theta2 and theta3
+            # side_a = length of link 3 (=d4)
+            # side_c = length of link 2 (=a2)
+            # side_b = length from O2 to WC, it can be found out by pythagorean theorem
             side_a = 1.50
             side_b = sqrt(np.square(sqrt(np.square(WC[0]) + np.square(WC[1])) - 0.35) + np.square(WC[2] - 0.75))
             side_c = 1.25
 
+            # The angle_a, angle_b and angle_c is opposite the side_a, side_b, and side_c respectively.
+            # The angles can be found out by law using cosine.
             angle_a = acos((np.square(side_b) + np.square(side_c) - np.square(side_a)) / (2 * side_b * side_c))
             angle_b = acos((np.square(side_a) + np.square(side_c) - np.square(side_b)) / (2 * side_a * side_c))
             angle_c = acos((np.square(side_a) + np.square(side_b) - np.square(side_c)) / (2 * side_a * side_b))
