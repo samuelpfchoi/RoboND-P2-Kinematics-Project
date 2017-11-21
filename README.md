@@ -28,7 +28,7 @@ Based on following description to find out the corresponding DH parameter for Ku
 
 and then run the forward_kinematics demo to figure out all corresponding parameters for the DH parameters
 
-![png](./writeup_images/kuka_arm_demo.png)
+![png](./writeup_images/kuka_arm_demo.PNG)
 
 Here is the result of the DH parameters table:
 
